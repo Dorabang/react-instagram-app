@@ -45,14 +45,14 @@ export const MenuItem: MenuItemProps[] = [
     icon: BiMoviePlay,
     selectedIcon: BiSolidMoviePlay,
     title: '릴스',
-    path: '/explore',
+    path: '/reels',
   },
   {
-    id: 'dm',
+    id: 'direct',
     icon: IoPaperPlaneOutline,
     selectedIcon: IoPaperPlane,
     title: '메시지',
-    path: '/direct',
+    path: '/direct/inbox',
   },
   {
     id: 'alarm',
