@@ -4,15 +4,45 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ExplorePage from './pages/explore';
+import UserPage from './pages/user';
+import ReelsPage from './pages/reels';
+import DirectPage from './pages/direct';
+import { RecoilRoot } from 'recoil';
 
-const router = createBrowserRouter([{ path: '/', element: <App /> }]);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: 'explore',
+        element: <ExplorePage />,
+      },
+      {
+        path: 'reels',
+        element: <ReelsPage />,
+      },
+      {
+        path: 'direct/inbox',
+        element: <DirectPage />,
+      },
+      {
+        path: 'dora_bangs',
+        element: <UserPage />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>
 );
 
