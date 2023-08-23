@@ -8,26 +8,25 @@ interface ProfileIconProps {
 }
 
 const ProfileIcon = ({
-  size = 26,
+  size = 28,
   profile = Default_Profile,
   userName,
 }: ProfileIconProps) => {
   return (
-    <li>
-      <div
-        className={`
-        w-[${size}px] h-[${size}px]
+    <div
+      className={`
+        w-[${size}px]
+        h-[${size}px]
         rounded-full overflow-hidden
         border border-neutral-400
         `}
-      >
-        <img
-          src={profile}
-          alt={`${userName} 프로필 이미지`}
-          className='w-full h-full object-cover'
-        />
-      </div>
-    </li>
+    >
+      <img
+        src={profile}
+        alt={`${userName} 프로필 이미지`}
+        className='w-full h-full object-cover'
+      />
+    </div>
   );
 };
 
