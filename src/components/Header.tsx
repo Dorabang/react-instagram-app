@@ -6,56 +6,96 @@ import MenuButton from './Menu/MenuButton';
 import { MenuItem } from './Menu/constant';
 import { FcMenu } from 'react-icons/fc';
 import { FiMenu } from 'react-icons/fi';
+import { modalOpenState, navState } from '../recoil/atoms';
+import { useRecoilValue } from 'recoil';
+import Search from './Search/Search';
 
 const Header = () => {
-  const [selected, setSelected] = useState<string>('');
+  const open = useRecoilValue(navState);
+  const modal = useRecoilValue(modalOpenState);
+  const [selected, setSelected] = useState<string>('home');
+  const handleClick = (id: string) => {
+    setSelected(id);
+  };
+
   return (
-    <header className='w-[72px] xl:w-[335px] flex flex-col h-[100vh] border-r border-solid border-gray-300'>
-      <div className='relative w-full h-full z-[1] px-3 pt-3 pb-6 flex flex-col'>
-        <div className='text-xl h-[92px] 2xl:px-1 2xl:pt-[22px] pb-[23px] 2xl:pb-4 mt-3 2xl:mt-0'>
-          <Link to='/'>
-            <div className='block xl:hidden'>
-              <MenuButton
-                icon={BiLogoInstagram}
-                selectedIcon={BiLogoInstagram}
-                id='logo'
-                onClick={(id) => setSelected(id)}
+    <header
+      className={`
+      relative
+      z-10
+    `}
+    >
+      <div className='hidden sm:block'>
+        <div
+          className={`
+          ${open ? '' : 'xl:w-[335px]'}
+          w-[72px]
+          h-[100vh]
+          flex
+          flex-col
+          transition
+          px-3
+          pt-3
+          pb-6
+          border-r
+          border-solid
+        border-gray-300 
+        bg-white
+          relative
+          z-[1]
+    `}
+        >
+          <div
+            className={`text-xl h-[92px] pb-0 flex items-center ${
+              open ? '' : 'xl:px-1  xl:pb-4 xl:pt-[12px]'
+            }`}
+          >
+            <Link to='/'>
+              <div className={`${open ? 'oapcity-100' : 'xl:hidden'} block`}>
+                <MenuButton
+                  icon={BiLogoInstagram}
+                  selectedIcon={BiLogoInstagram}
+                  id='logo'
+                  onClick={(id) => setSelected(id)}
+                />
+              </div>
+              <img
+                src={Logo}
+                alt='인스타그램 워드마크 이미지'
+                className={`${
+                  open ? 'hidden opacity-0' : 'xl:block opacity-100 transition'
+                } h-[48px] hidden`}
               />
-            </div>
-            <img
-              src={Logo}
-              alt='인스타그램 워드마크 이미지'
-              className='h-[46px] hidden xl:block'
+            </Link>
+          </div>
+
+          <ul className='flex flex-col gap-2 w-full grow'>
+            {MenuItem?.map((menu) => (
+              <li key={menu.id}>
+                <MenuButton
+                  onClick={(id) => {
+                    handleClick(id);
+                  }}
+                  selected={selected === menu.id}
+                  borderFormat={selected === 'alarm' || selected === 'search'}
+                  {...menu}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <div>
+            <MenuButton
+              icon={FcMenu}
+              selectedIcon={FiMenu}
+              id='setting'
+              title='더 보기'
+              onClick={(id) => setSelected(id)}
+              selected={selected === 'setting'}
             />
-          </Link>
+          </div>
         </div>
-
-        <ul className='flex flex-col gap-3 w-full grow'>
-          {MenuItem?.map((menu) => (
-            <li>
-              <MenuButton
-                key={menu.title}
-                onClick={(id) => {
-                  setSelected(id);
-                }}
-                selected={selected === menu.id}
-                borderFormat={selected === 'alarm' || selected === 'search'}
-                {...menu}
-              />
-            </li>
-          ))}
-        </ul>
-
-        <div>
-          <MenuButton
-            icon={FcMenu}
-            selectedIcon={FiMenu}
-            id='setting'
-            title='더 보기'
-            onClick={(id) => setSelected(id)}
-            selected={selected === 'setting'}
-          />
-        </div>
+        {modal && selected === 'search' && <Search />}
       </div>
     </header>
   );
