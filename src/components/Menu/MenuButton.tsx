@@ -8,26 +8,26 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 
 interface MenuButtonProps {
   icon: IconType;
+  selectedIcon: IconType;
+  id: string;
+  onClick: (value: string) => void;
   title?: string;
   selected?: boolean | undefined;
   path?: string | null | undefined;
-  onClick: (value: string) => void;
-  id: string;
-  borderFormat?: boolean;
-  selectedIcon: IconType;
   profile?: string | null | undefined;
+  borderFormat?: boolean;
 }
 
 const MenuButton = ({
   icon: Icon,
+  selectedIcon: SelectedIcon,
+  id,
+  onClick,
   title,
   selected,
-  onClick,
-  id,
-  borderFormat,
-  selectedIcon: SelectedIcon,
-  profile,
   path,
+  profile,
+  borderFormat,
 }: MenuButtonProps) => {
   const [open, setOpen] = useRecoilState(navState);
   const setModal = useSetRecoilState(modalOpenState);
