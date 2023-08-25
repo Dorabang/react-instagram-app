@@ -14,7 +14,11 @@ interface MenuButtonProps {
   title?: string;
   selected?: boolean | undefined;
   path?: string | null | undefined;
-  profile?: string | null | undefined;
+  profile?: {
+    imageSrc: string | undefined;
+    nickName: string | undefined;
+    description: string | undefined;
+  };
   borderFormat?: boolean;
 }
 
@@ -36,8 +40,8 @@ const MenuButton = ({
 
   const handleNavOpen = () => {
     if (id === 'search' || id === 'alarm') {
-      setOpen(true);
-      setModal(true);
+      setOpen((prev) => !prev);
+      setModal((prev) => !prev);
     } else if (id === 'direct') {
       setOpen(true);
       setModal(false);
@@ -75,7 +79,7 @@ const MenuButton = ({
         `}
       >
         {profile ? (
-          <ProfileIcon userName='김ㅇㅇ' />
+          <ProfileIcon userName={profile.nickName} profile={profile.imageSrc} />
         ) : (
           <SelectIcon
             selected={selected}
