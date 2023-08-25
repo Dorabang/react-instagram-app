@@ -12,7 +12,8 @@ import {
   IoCompassOutline,
   IoCompass,
 } from 'react-icons/io5';
-import Default_Profile from '../../assets/default_profile.jpg';
+import UserList, { UserListProps } from '../../constants/UserList';
+import { getItem } from '../../utils/getSessionStorage';
 
 export interface MenuItemProps {
   id: string;
@@ -20,9 +21,21 @@ export interface MenuItemProps {
   selectedIcon: IconType;
   title: string;
   path?: string | null;
-  profile?: string | null;
+  profile?: {
+    imageSrc: string | undefined;
+    nickName: string | undefined;
+    description: string | undefined;
+  };
   selected?: boolean;
 }
+
+const user: { email: string; password: string }[] = getItem('userInfo');
+const userList: UserListProps | undefined = UserList.find(
+  (item) => item.email === user[0]?.email
+);
+
+console.log('user', user[0]?.email);
+console.log('userList', userList);
 
 export const MenuItem: MenuItemProps[] = [
   {
@@ -72,7 +85,11 @@ export const MenuItem: MenuItemProps[] = [
     icon: MdOutlineExplore,
     selectedIcon: IoIosSearch,
     title: '프로필',
-    path: '/dora_bangs',
-    profile: Default_Profile,
+    path: userList?.nickName,
+    profile: {
+      imageSrc: userList?.imageSrc,
+      nickName: userList?.nickName,
+      description: userList?.description,
+    },
   },
 ];
