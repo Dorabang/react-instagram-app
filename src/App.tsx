@@ -11,7 +11,7 @@ export interface UserProps {
 
 function App() {
   const user: UserProps[] | undefined = getItem('userInfo');
-  console.log('user', user);
+
   const navigate = useNavigate();
 
   useEffect(() => {
