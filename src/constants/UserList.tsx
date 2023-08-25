@@ -4,7 +4,7 @@ import profile3 from '../assets/user3.jpg';
 import profile4 from '../assets/user4.jpg';
 import profile5 from '../assets/user5.jpg';
 
-interface UserListProps {
+export interface UserListProps {
   nickName: string;
   userName: string;
   email: string;
@@ -16,7 +16,7 @@ const UserList: UserListProps[] = [
   {
     nickName: 'dora_bang',
     userName: '김ㅇㅇ',
-    email: 'test@test.com',
+    email: 'test0@test.com',
     description: '안녕하세요! 🙋🏻‍♀️',
   },
   {
