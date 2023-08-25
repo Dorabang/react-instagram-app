@@ -3,7 +3,7 @@ import Default_Profile from '../assets/default_profile.jpg';
 
 interface ProfileIconProps {
   size?: number;
-  profile?: string;
+  profile?: string | undefined;
   userName?: string;
 }
 
@@ -28,7 +28,7 @@ const ProfileIcon = ({
         `}
     >
       <img
-        src={profile}
+        src={profile === undefined ? Default_Profile : profile}
         alt={`${userName} 프로필 이미지`}
         className='w-full h-full object-cover'
       />
