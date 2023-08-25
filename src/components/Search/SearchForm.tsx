@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Input from '../Input';
 import { useRecoilState } from 'recoil';
 import { inputState } from '../../recoil/atoms';
@@ -20,7 +20,7 @@ const SearchForm = ({ addSearchValue }: SearchFormProps) => {
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <Input placeholder='검색' />
+      <Input placeholder='검색' name='search' />
     </form>
   );
 };

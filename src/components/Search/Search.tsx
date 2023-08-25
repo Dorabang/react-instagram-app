@@ -1,15 +1,12 @@
-import UserList from '../../constants/UserList';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Modal from '../Modal';
 import SearchForm from './SearchForm';
 import Heading from '../Heading';
-import { useRecoilValue } from 'recoil';
-import { inputState } from '../../recoil/atoms';
 import { getItem, setItem } from '../../utils/getSessionStorage';
 
 const Search = () => {
-  const value = useRecoilValue(inputState);
+  setItem('searchList', []);
   const searchListData = getItem('searchList');
   const [searchList, setSearchList] = useState<string[]>(searchListData);
 
@@ -25,22 +22,16 @@ const Search = () => {
   };
 
   const deleteSearchValue = (idx: number) => {
-    const newSearchList: string[] = searchList.filter(
+    const modifySearchList: string[] = searchList.filter(
       (_, index) => index !== idx
     );
-    setSearchList(newSearchList);
-    setItem('searchList', newSearchList);
+    setSearchList(modifySearchList);
+    setItem('searchList', modifySearchList);
   };
 
   useEffect(() => {}, []);
 
   const query = useSearchParams();
-
-  // console.log('query', query);
-
-  if (value) {
-    const user = UserList.find((item) => item.nickName === value);
-  }
 
   return (
     <Modal>
@@ -66,11 +57,15 @@ const Search = () => {
             <SearchForm addSearchValue={addSearchValue} />
           </div>
         </div>
-        <div className='w-[396px] pt-2 overflow-y-scroll'>
+        <div className='w-[396px] pt-2 h-full overflow-y-scroll'>
           <div className='font-bold px-6 py-2 flex justify-between'>
             <p>최근 검색 항목</p>
             <div
-              className={`${searchList.length === 0 ? 'hidden' : 'block'}`}
+              className={`${
+                searchList.length === 0 || searchList === null
+                  ? 'hidden'
+                  : 'block'
+              }`}
               onClick={handleAllRemove}
             >
               <span className='text-cyan-500 hover:text-cyan-800 cursor-pointer'>
