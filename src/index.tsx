@@ -9,6 +9,8 @@ import UserPage from './pages/user';
 import ReelsPage from './pages/reels';
 import DirectPage from './pages/direct';
 import { RecoilRoot } from 'recoil';
+import LoginPage from './pages/login';
+import RegisterPage from './pages/register';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: 'dora_bangs',
         element: <UserPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />,
       },
     ],
   },
