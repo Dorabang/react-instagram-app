@@ -29,7 +29,6 @@ const AuthForm = ({ type }: { type: string }) => {
   let user;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log('data', data);
     const { email, password, userName, nickName } = data;
 
     if (type === 'register') {
@@ -48,12 +47,9 @@ const AuthForm = ({ type }: { type: string }) => {
       navigate('/');
     }
     const userList = UserList.find((item) => item.email === String(email));
-    console.log('user', userList);
 
     if (type === 'login') {
-      if (
-        Boolean(UserList.find((item) => item.email === String(email))) === true
-      ) {
+      if (userList) {
         user = [
           {
             email: email,

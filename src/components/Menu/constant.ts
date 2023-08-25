@@ -34,9 +34,6 @@ const userList: UserListProps | undefined = UserList.find(
   (item) => item.email === user[0]?.email
 );
 
-console.log('user', user[0]?.email);
-console.log('userList', userList);
-
 export const MenuItem: MenuItemProps[] = [
   {
     id: 'home',
