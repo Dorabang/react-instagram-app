@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Logo from '../assets/instagram-logo.png';
 import { BiLogoInstagram } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import MenuButton from './Menu/MenuButton';
+import MenuButton from 'components/Menu/MenuButton';
 import { MenuItem } from './Menu/constant';
 import { FcMenu } from 'react-icons/fc';
 import { FiMenu } from 'react-icons/fi';

@@ -14,9 +14,11 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    user?.length === 0 && navigate('/login');
-  }, [user]);
+  /* useEffect(() => {
+    if (user?.length === 0 || user === undefined) {
+      navigate('/login');
+    }
+  }, [user]); */
 
   return (
     <>

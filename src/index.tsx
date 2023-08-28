@@ -11,6 +11,9 @@ import DirectPage from './pages/direct';
 import { RecoilRoot } from 'recoil';
 import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
+import { getItem } from './utils/getSessionStorage';
+
+const user = getItem('userInfo');
 
 const router = createBrowserRouter([
   {
