@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import AuthForm from '../../components/Auth/AuthForm';
 import { getItem } from '../../utils/getSessionStorage';
 import { UserProps } from '../../App';
@@ -8,10 +8,10 @@ const LoginPage = () => {
   const user: UserProps[] | undefined = getItem('userInfo');
 
   const navigate = useNavigate();
-
+  /* 
   useEffect(() => {
-    user?.length !== 0 && navigate(-1);
-  }, [user]);
+    user?.length !== 0 && navigate('/login' || '/register');
+  }, [user]); */
 
   return <AuthForm type='login' />;
 };
