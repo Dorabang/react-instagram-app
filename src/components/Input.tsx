@@ -1,4 +1,4 @@
-import { inputState } from '../recoil/atoms';
+import { inputState } from 'recoil/atoms';
 import React, { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { useRecoilState } from 'recoil';

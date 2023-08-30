@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Modal from '../Modal';
-import SearchForm from './SearchForm';
-import Heading from '../Heading';
-import { getItem, setItem } from '../../utils/getSessionStorage';
+import Modal from 'components/Modal';
+import SearchForm from 'components/Search/SearchForm';
+import Heading from 'components/Heading';
+import { getItem, setItem } from 'utils/getSessionStorage';
 
 const Search = () => {
   setItem('searchList', []);

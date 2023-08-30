@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ExplorePage from './pages/explore';
-import UserPage from './pages/user';
-import ReelsPage from './pages/reels';
-import DirectPage from './pages/direct';
 import { RecoilRoot } from 'recoil';
-import LoginPage from './pages/login';
-import RegisterPage from './pages/register';
-import { getItem } from './utils/getSessionStorage';
+
+import ExplorePage from 'pages/explore';
+import UserPage from 'pages/user';
+import ReelsPage from 'pages/reels';
+import DirectPage from 'pages/direct';
+import LoginPage from 'pages/login';
+import RegisterPage from 'pages/register';
+import { getItem } from 'utils/getSessionStorage';
 
 const user = getItem('userInfo');
 

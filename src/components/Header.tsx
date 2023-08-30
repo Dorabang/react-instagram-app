@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Logo from '../assets/instagram-logo.png';
+import Logo from 'assets/instagram-logo.png';
 import { BiLogoInstagram } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import MenuButton from 'components/Menu/MenuButton';
-import { MenuItem } from './Menu/constant';
+import { MenuItem } from 'components/Menu/constant';
 import { FcMenu } from 'react-icons/fc';
 import { FiMenu } from 'react-icons/fi';
-import { modalOpenState, navState } from '../recoil/atoms';
+import { modalOpenState, navState } from 'recoil/atoms';
 import { useRecoilValue } from 'recoil';
-import Search from './Search/Search';
+import Search from 'components/Search/Search';
 
 const Header = () => {
   const open = useRecoilValue(navState);
