@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from '../Input';
+import Input from 'components/Input';
 import { useRecoilState } from 'recoil';
-import { inputState } from '../../recoil/atoms';
+import { inputState } from 'recoil/atoms';
 
 interface SearchFormProps {
   addSearchValue: (value: string) => void;

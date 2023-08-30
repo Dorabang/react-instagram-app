@@ -1,5 +1,5 @@
 import React from 'react';
-import Default_Profile from '../assets/default_profile.jpg';
+import Default_Profile from 'assets/default_profile.jpg';
 
 interface ProfileIconProps {
   size?: number;

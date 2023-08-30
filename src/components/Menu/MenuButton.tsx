@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconType } from 'react-icons';
-import SelectIcon from './SelectIcon';
-import ProfileIcon from '../ProfileIcon';
+import SelectIcon from 'components/Menu/SelectIcon';
+import ProfileIcon from 'components/ProfileIcon';
 import { useNavigate } from 'react-router-dom';
 import { modalOpenState, navState } from '../../recoil/atoms';
 import { useRecoilState, useSetRecoilState } from 'recoil';

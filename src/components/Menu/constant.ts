@@ -12,8 +12,8 @@ import {
   IoCompassOutline,
   IoCompass,
 } from 'react-icons/io5';
-import UserList, { UserListProps } from '../../constants/UserList';
-import { getItem } from '../../utils/getSessionStorage';
+import UserList, { UserListProps } from 'constants/UserList';
+import { getItem } from 'utils/getSessionStorage';
 
 export interface MenuItemProps {
   id: string;

@@ -1,4 +1,4 @@
-import { UserInfoProps } from '../components/Auth/AuthForm';
+import { UserInfoProps } from 'components/Auth/AuthForm';
 
 function getItem(key: string) {
   const value = sessionStorage.getItem(key);

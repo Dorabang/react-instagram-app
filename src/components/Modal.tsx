@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil';
-import useOnClickOutside from '../hooks/useOnClickOutside';
+import useOnClickOutside from 'hooks/useOnClickOutside';
 import React, { useRef } from 'react';
-import { modalOpenState, navState } from '../recoil/atoms';
+import { modalOpenState, navState } from 'recoil/atoms';
 
 const Modal = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);

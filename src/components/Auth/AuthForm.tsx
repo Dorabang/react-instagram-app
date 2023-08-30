@@ -1,11 +1,11 @@
 import React from 'react';
-import Logo from '../../assets/instagram-logo.png';
+import Logo from 'assets/instagram-logo.png';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import AuthInput from './AuthInput';
-import AuthButton from './AuthButton';
-import { useNavigate } from 'react-router-dom';
-import UserList from '../../constants/UserList';
-import { setItem } from '../../utils/getSessionStorage';
+import AuthInput from 'components/Auth/AuthInput';
+import AuthButton from 'components/Auth/AuthButton';
+import { Link, useNavigate } from 'react-router-dom';
+import UserList from 'constants/UserList';
+import { setItem } from 'utils/getSessionStorage';
 
 export interface UserInfoProps {
   email: string;
@@ -114,7 +114,7 @@ const AuthForm = ({ type }: { type: string }) => {
               <div className='text-xs text-gray-500 my-2'>
                 저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에
                 업로드했을 수도 있습니다.{' '}
-                <span className='text-gray-700'>더 알아보기</span>
+                <span className='text-gray-800'>더 알아보기</span>
               </div>
             )}
             <AuthButton label={type === 'register' ? '가입' : '로그인'} />
@@ -126,25 +126,22 @@ const AuthForm = ({ type }: { type: string }) => {
             {type === 'register' ? (
               <>
                 <span>계정이 있으신가요?</span>{' '}
-                <span
+                <Link
                   className='text-cyan-500 font-bold cursor-pointer'
-                  onClick={() => navigate('/login')}
+                  to='/login'
                 >
                   로그인
-                </span>
+                </Link>
               </>
             ) : (
               <>
-                <p>dora_bangs님이 아닌가요?</p>
-                <span className='text-cyan-500 font-bold'>
-                  계정 변경
-                </span> 또는{' '}
-                <span
+                <p>아직 회원이 아니신가요?</p>{' '}
+                <Link
                   className='text-cyan-500 font-bold cursor-pointer'
-                  onClick={() => navigate('/register')}
+                  to='/register'
                 >
                   가입하기
-                </span>
+                </Link>
               </>
             )}
           </div>

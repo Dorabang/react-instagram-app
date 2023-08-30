@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import Header from './components/Header';
+import React from 'react';
+import Header from 'components/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { getItem } from './utils/getSessionStorage';
+import { getItem } from 'utils/getSessionStorage';
 
 export interface UserProps {
   email: string;
