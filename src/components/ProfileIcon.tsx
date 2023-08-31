@@ -2,7 +2,7 @@ import React from 'react';
 import Default_Profile from 'assets/default_profile.jpg';
 
 interface ProfileIconProps {
-  size?: number;
+  size?: boolean;
   profile?: string | undefined;
   userName?: string;
 }
@@ -15,16 +15,10 @@ const ProfileIcon = ({
   return (
     <div
       className={`
-        ${
-          size
-            ? `
-        w-[${size}px]
-        h-[${size}px]
-        `
-            : 'w-7 h-7'
-        }
+        border 
+        ${profile === undefined ? 'border-neutral-600' : 'border-neutral-400'}
+        ${size ? 'w-9 h-9' : 'w-7 h-7'}
         rounded-full overflow-hidden
-        border border-neutral-400
         `}
     >
       <img
