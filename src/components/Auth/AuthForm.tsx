@@ -44,7 +44,7 @@ const AuthForm = ({ type }: { type: string }) => {
       ];
       setItem('userInfo', user);
       alert('회원가입이 성공적으로 완료되었습니다.');
-      navigate('/');
+      navigate(0);
     }
     const userList = UserList.find((item) => item.email === String(email));
 
@@ -58,7 +58,7 @@ const AuthForm = ({ type }: { type: string }) => {
         ];
         setItem('userInfo', user);
         alert('로그인이 성공적으로 완료되었습니다.');
-        navigate('/');
+        navigate(0);
       }
     }
   };
@@ -126,16 +126,13 @@ const AuthForm = ({ type }: { type: string }) => {
             {type === 'register' ? (
               <>
                 <span>계정이 있으신가요?</span>{' '}
-                <Link
-                  className='text-cyan-500 font-bold cursor-pointer'
-                  to='/login'
-                >
+                <Link className='text-cyan-500 font-bold cursor-pointer' to='/'>
                   로그인
                 </Link>
               </>
             ) : (
               <>
-                <p>아직 회원이 아니신가요?</p>{' '}
+                <span>아직 회원이 아니신가요?</span>{' '}
                 <Link
                   className='text-cyan-500 font-bold cursor-pointer'
                   to='/register'

@@ -2,6 +2,7 @@ import { IconType } from 'react-icons/lib';
 import { GoHomeFill, GoHome } from 'react-icons/go';
 import { PiPlusSquareFill, PiPlusSquare } from 'react-icons/pi';
 import { BiMoviePlay, BiSolidMoviePlay } from 'react-icons/bi';
+import { BsClockHistory } from 'react-icons/bs';
 import { MdOutlineExplore } from 'react-icons/md';
 import { LiaHeart, LiaHeartSolid } from 'react-icons/lia';
 import { IoIosSearch } from 'react-icons/io';
@@ -11,6 +12,7 @@ import {
   IoSearch,
   IoCompassOutline,
   IoCompass,
+  IoSettingsOutline,
 } from 'react-icons/io5';
 import UserList, { UserListProps } from 'constants/UserList';
 import { getItem } from 'utils/getSessionStorage';
@@ -27,6 +29,11 @@ export interface MenuItemProps {
     description: string | undefined;
   };
   selected?: boolean;
+  modal?: {
+    setting: { name: string; icon: IconType }[];
+    switchAccount: { name: string };
+    logOut: { name: string };
+  };
 }
 
 const user: { email: string; password: string }[] = getItem('userInfo');
@@ -87,6 +94,17 @@ export const MenuItem: MenuItemProps[] = [
       imageSrc: userList?.imageSrc,
       nickName: userList?.nickName,
       description: userList?.description,
+    },
+    modal: {
+      setting: [
+        { name: '설정', icon: IoSettingsOutline },
+        { name: '내 활동', icon: BsClockHistory },
+        { name: '저장됨', icon: IoSettingsOutline },
+        { name: '모드 전환', icon: IoSettingsOutline },
+        { name: '문제 신고', icon: IoSettingsOutline },
+      ],
+      switchAccount: { name: '계정 전환' },
+      logOut: { name: '로그아웃' },
     },
   },
 ];

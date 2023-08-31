@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import Modal from 'components/Modal';
 import SearchForm from 'components/Search/SearchForm';
 import Heading from 'components/Heading';
@@ -11,8 +10,12 @@ const Search = () => {
   const [searchList, setSearchList] = useState<string[]>(searchListData);
 
   const handleAllRemove = () => {
-    setSearchList([]);
-    setItem('searchList', []);
+    if (window.confirm('검색 내역을 지우시겠어요?')) {
+      setSearchList([]);
+      sessionStorage.removeItem('searchList');
+    } else {
+      return;
+    }
   };
 
   const addSearchValue = (value: string) => {
@@ -29,10 +32,6 @@ const Search = () => {
     setItem('searchList', modifySearchList);
   };
 
-  useEffect(() => {}, []);
-
-  const query = useSearchParams();
-
   return (
     <Modal>
       <div
@@ -45,20 +44,20 @@ const Search = () => {
         h-screen
         py-2
         border-r
-        border-gray-300
+        border-gray-200
         flex
         flex-col
         shadow-[4px_0_24px_rgba(0,0,0,0.15)]
         '
       >
-        <div className='border-b border-gray-300'>
+        <div className='border-b border-gray-200'>
           <Heading title='검색' />
           <div className='mb-6 px-4'>
             <SearchForm addSearchValue={addSearchValue} />
           </div>
         </div>
-        <div className='w-[396px] pt-2 h-full overflow-y-scroll'>
-          <div className='font-bold px-6 py-2 flex justify-between'>
+        <div className='w-[396px] pt-2 h-full'>
+          <div className='font-bold px-6 py-2 flex justify-between w-full'>
             <p>최근 검색 항목</p>
             <div
               className={`${
@@ -73,8 +72,9 @@ const Search = () => {
               </span>
             </div>
           </div>
-          <ul className='py-2'>
-            {searchList &&
+
+          <ul className='py-2 w-full h-full overflow-y-scroll scrollbar-hide'>
+            {searchList.length !== 0 ? (
               searchList.map((searchItem, idx) => (
                 <li
                   key={idx}
@@ -93,7 +93,15 @@ const Search = () => {
                   <span className='font-bold flex-grow'>#{searchItem}</span>
                   <span onClick={() => deleteSearchValue(idx)}>x</span>
                 </li>
-              ))}
+              ))
+            ) : (
+              <li
+                className='flex justify-center h-full items-center
+              text-sm text-gray-500 font-bold'
+              >
+                <span>최근 검색 내역 없음.</span>
+              </li>
+            )}
           </ul>
         </div>
       </div>
