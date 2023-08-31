@@ -34,7 +34,7 @@ const PostCard = () => {
 
   const navigate = useNavigate();
 
-  const hasLikes = (id: number, type: string) => {
+  const hasLikesAndBookmarks = (id: number, type: string) => {
     const post = posts.find((item) => item.id === id);
     if (type === 'likes') {
       const likes = post?.like || [];
@@ -146,7 +146,7 @@ const PostCard = () => {
                     <div className='flex justify-between pb-2'>
                       <div className='flex gap-2'>
                         <span onClick={() => toggleLikes(post.id)}>
-                          {hasLikes(post.id, 'likes') ? (
+                          {hasLikesAndBookmarks(post.id, 'likes') ? (
                             <LiaHeartSolid
                               size={size}
                               className={`${generalClass} text-rose-500`}
@@ -168,7 +168,7 @@ const PostCard = () => {
                         />
                       </div>
                       <span onClick={() => toggleBookmarks(post.id)}>
-                        {hasLikes(post.id, 'bookmarks') ? (
+                        {hasLikesAndBookmarks(post.id, 'bookmarks') ? (
                           <IoBookmark
                             size={size}
                             className={`${generalClass}`}
