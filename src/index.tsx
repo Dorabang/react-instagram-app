@@ -12,41 +12,35 @@ import ReelsPage from 'pages/reels';
 import DirectPage from 'pages/direct';
 import LoginPage from 'pages/login';
 import RegisterPage from 'pages/register';
-import { getItem } from 'utils/getSessionStorage';
+import getCurrentUser from 'utils/getUserInfo';
+import ErrorPage from 'pages/error';
+import Home from 'pages/Home';
 
-const user = getItem('userInfo');
+const currentUser = getCurrentUser();
 
-const router = createBrowserRouter([
+const routesForAuthOnly = [
   {
     path: '/',
     element: <App />,
     children: [
-      {
-        path: 'explore',
-        element: <ExplorePage />,
-      },
-      {
-        path: 'reels',
-        element: <ReelsPage />,
-      },
-      {
-        path: 'direct/inbox',
-        element: <DirectPage />,
-      },
-      {
-        path: 'dora_bangs',
-        element: <UserPage />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-      {
-        path: 'register',
-        element: <RegisterPage />,
-      },
+      { path: '/', element: <Home /> },
+      { path: 'explore', element: <ExplorePage /> },
+      { path: 'reels', element: <ReelsPage /> },
+      { path: 'direct/inbox', element: <DirectPage /> },
+      { path: `${currentUser?.nickName}`, element: <UserPage /> },
     ],
   },
+];
+
+const routesForNotAuthOnly = [
+  { path: '/', element: <LoginPage /> },
+  { path: 'register', element: <RegisterPage /> },
+];
+
+const router = createBrowserRouter([
+  ...(currentUser === null ? routesForNotAuthOnly : []),
+  ...routesForAuthOnly,
+  { errorElement: <ErrorPage /> },
 ]);
 
 const root = ReactDOM.createRoot(
