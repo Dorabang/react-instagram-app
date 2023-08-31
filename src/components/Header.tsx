@@ -19,15 +19,11 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`
-      relative
-      z-10
-    `}
-    >
-      <div className='hidden sm:block'>
-        <div
-          className={`
+    <header className='fixed'>
+      <div className='relative z-10'>
+        <div className='hidden sm:block'>
+          <div
+            className={`
           ${open ? '' : 'xl:w-[335px]'}
           w-[72px]
           h-[100vh]
@@ -39,63 +35,66 @@ const Header = () => {
           pb-6
           border-r
           border-solid
-        border-gray-300 
+        border-gray-100 
         bg-white
           relative
           z-[1]
     `}
-        >
-          <div
-            className={`text-xl h-[92px] pb-0 flex items-center ${
-              open ? '' : 'xl:px-1  xl:pb-4 xl:pt-[12px]'
-            }`}
           >
-            <Link to='/'>
-              <div className={`${open ? 'oapcity-100' : 'xl:hidden'} block`}>
-                <MenuButton
-                  icon={BiLogoInstagram}
-                  selectedIcon={BiLogoInstagram}
-                  id='logo'
-                  onClick={(id) => setSelected(id)}
+            <div
+              className={`text-xl h-[92px] pb-0 flex items-center ${
+                open ? '' : 'xl:px-1  xl:pb-4 xl:pt-[12px]'
+              }`}
+            >
+              <Link to='/'>
+                <div className={`${open ? 'oapcity-100' : 'xl:hidden'} block`}>
+                  <MenuButton
+                    icon={BiLogoInstagram}
+                    selectedIcon={BiLogoInstagram}
+                    id='logo'
+                    onClick={(id) => setSelected(id)}
+                  />
+                </div>
+                <img
+                  src={Logo}
+                  alt='인스타그램 워드마크 이미지'
+                  className={`${
+                    open
+                      ? 'hidden opacity-0'
+                      : 'xl:block opacity-100 transition'
+                  } h-[48px] hidden`}
                 />
-              </div>
-              <img
-                src={Logo}
-                alt='인스타그램 워드마크 이미지'
-                className={`${
-                  open ? 'hidden opacity-0' : 'xl:block opacity-100 transition'
-                } h-[48px] hidden`}
+              </Link>
+            </div>
+
+            <ul className='flex flex-col gap-2 w-full grow'>
+              {MenuItem?.map((menu) => (
+                <li key={menu.id}>
+                  <MenuButton
+                    onClick={(id) => {
+                      handleClick(id);
+                    }}
+                    selected={selected === menu.id}
+                    borderFormat={selected === 'alarm' || selected === 'search'}
+                    {...menu}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <MenuButton
+                icon={FcMenu}
+                selectedIcon={FiMenu}
+                id='setting'
+                title='더 보기'
+                onClick={(id) => setSelected(id)}
+                selected={selected === 'setting'}
               />
-            </Link>
+            </div>
           </div>
-
-          <ul className='flex flex-col gap-2 w-full grow'>
-            {MenuItem?.map((menu) => (
-              <li key={menu.id}>
-                <MenuButton
-                  onClick={(id) => {
-                    handleClick(id);
-                  }}
-                  selected={selected === menu.id}
-                  borderFormat={selected === 'alarm' || selected === 'search'}
-                  {...menu}
-                />
-              </li>
-            ))}
-          </ul>
-
-          <div>
-            <MenuButton
-              icon={FcMenu}
-              selectedIcon={FiMenu}
-              id='setting'
-              title='더 보기'
-              onClick={(id) => setSelected(id)}
-              selected={selected === 'setting'}
-            />
-          </div>
+          {modal && selected === 'search' && <Search />}
         </div>
-        {modal && selected === 'search' && <Search />}
       </div>
     </header>
   );
