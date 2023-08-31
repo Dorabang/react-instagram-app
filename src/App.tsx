@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from 'components/Header';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { getItem } from 'utils/getSessionStorage';
+import { Navigate, Outlet } from 'react-router-dom';
+import getCurrentUser from 'utils/getUserInfo';
 
 export interface UserProps {
   email: string;
@@ -9,20 +9,17 @@ export interface UserProps {
 }
 
 function App() {
-  const user: UserProps[] | undefined = getItem('userInfo');
+  const currentUser = getCurrentUser();
 
-  const navigate = useNavigate();
-
-  /* useEffect(() => {
-    if (user?.length === 0 || user === undefined) {
-      navigate('/login');
-    }
-  }, [user]); */
-
+  if (!currentUser && currentUser === undefined && currentUser === null) {
+    return <Navigate to='/' />;
+  }
   return (
     <>
-      {user?.length !== 0 && <Header />}
-      <Outlet />
+      <Header />
+      <div className='w-full ml-0 sm:w-[calc(100%_-_335px)] sm:ml-auto flex justify-center pt-4 pb-20'>
+        <Outlet />
+      </div>
     </>
   );
 }
