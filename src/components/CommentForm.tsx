@@ -4,13 +4,6 @@ import { PostList, PostListProps } from 'constants/PostList';
 import { useRecoilState } from 'recoil';
 import { postState } from 'recoil/atoms';
 
-interface CommentProps {
-  nickName: string;
-  message: string;
-  createdAt: Date;
-  like: string[];
-}
-
 const CommentForm = ({
   postId,
   updatedSetPosts,
