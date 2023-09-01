@@ -3,10 +3,22 @@ import Modal from 'components/Modal';
 import SearchForm from 'components/Search/SearchForm';
 import Heading from 'components/Heading';
 import { getItem, setItem } from 'utils/getSessionStorage';
+import SearchHistory from './SearchHistory';
+import { useRecoilValue } from 'recoil';
+import { inputState } from 'recoil/atoms';
+import { UserProfile } from 'components/RecommendUser';
+import UserList from 'constants/UserList';
 
 const Search = () => {
   setItem('searchList', []);
   const searchListData = getItem('searchList');
+
+  const search = useRecoilValue(inputState);
+  const searchUserList = UserList.filter(
+    (user) =>
+      user.nickName.includes(search) || user.description?.includes(search)
+  );
+
   const [searchList, setSearchList] = useState<string[]>(searchListData);
 
   const handleAllRemove = () => {
@@ -57,50 +69,38 @@ const Search = () => {
           </div>
         </div>
         <div className='w-[396px] pt-2 h-full'>
-          <div className='font-bold px-6 py-2 flex justify-between w-full'>
-            <p>최근 검색 항목</p>
-            <div
-              className={`${
-                searchList.length === 0 || searchList === null
-                  ? 'hidden'
-                  : 'block'
-              }`}
-              onClick={handleAllRemove}
-            >
-              <span className='text-cyan-500 hover:text-cyan-800 cursor-pointer'>
-                모두 지우기
-              </span>
-            </div>
-          </div>
-
-          <ul className='py-2 w-full h-full overflow-y-scroll scrollbar-hide'>
-            {searchList.length !== 0 ? (
-              searchList.map((searchItem, idx) => (
-                <li
-                  key={idx}
-                  className='flex items-center px-6 py-2 hover:bg-gray-100 transition-colors cursor-pointer'
-                >
-                  <span
-                    className='
-                    border border-gray-200 rounded-full
-                    w-[44px] h-[44px] mr-2
-                    flex justify-center items-center
-                    text-2xl ont-bold leading-none
-                  '
-                  >
-                    #
-                  </span>
-                  <span className='font-bold flex-grow'>#{searchItem}</span>
-                  <span onClick={() => deleteSearchValue(idx)}>x</span>
-                </li>
-              ))
-            ) : (
-              <li
-                className='flex justify-center h-full items-center
-              text-sm text-gray-500 font-bold'
+          {!search && (
+            <div className='font-bold px-6 py-2 flex justify-between w-full'>
+              <p>최근 검색 항목</p>
+              <div
+                className={`${
+                  searchList.length === 0 || searchList === null
+                    ? 'hidden'
+                    : 'block'
+                }`}
+                onClick={handleAllRemove}
               >
-                <span>최근 검색 내역 없음.</span>
-              </li>
+                <span className='text-cyan-500 hover:text-cyan-800 cursor-pointer'>
+                  모두 지우기
+                </span>
+              </div>
+            </div>
+          )}
+
+          <ul className='w-full h-full overflow-y-scroll scrollbar-hide'>
+            {search ? (
+              <>
+                {searchUserList.map((user) => (
+                  <li className='px-6 py-2 hover:bg-gray-100 transition-colors cursor-pointer'>
+                    <UserProfile user={user} type='SearchUser' value='' />
+                  </li>
+                ))}
+              </>
+            ) : (
+              <SearchHistory
+                searchList={searchList}
+                deleteSearchValue={deleteSearchValue}
+              />
             )}
           </ul>
         </div>
