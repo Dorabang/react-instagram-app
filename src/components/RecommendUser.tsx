@@ -3,13 +3,13 @@ import getCurrentUser from 'utils/getUserInfo';
 import ProfileIcon from './ProfileIcon';
 import UserList, { UserListProps } from 'constants/UserList';
 
-const Button = ({ value }: { value: string }) => {
+export const Button = ({ value }: { value: string }) => {
   return (
     <div className='cursor-pointer text-sky-500 text-xs font-bold'>{value}</div>
   );
 };
 
-const UserProfile = ({
+export const UserProfile = ({
   user,
   type,
 }: {
