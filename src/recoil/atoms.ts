@@ -1,3 +1,4 @@
+import { PostList } from 'constants/PostList';
 import { atom } from 'recoil';
 
 export const navState = atom({
@@ -13,4 +14,9 @@ export const modalOpenState = atom({
 export const inputState = atom({
   key: 'inputState', // unique ID (with respect to other atoms/selectors)
   default: '', // default value (aka initial value)
+});
+
+export const postState = atom({
+  key: 'postState', // unique ID (with respect to other atoms/selectors)
+  default: PostList, // default value (aka initial value)
 });
