@@ -234,8 +234,8 @@ export const PostList: PostListProps[] = [
     nickName: 'test3',
     description: '새로운 글',
     createdAt: new Date('2023-8-29, 23:25'),
-    like: ['test_8', 'test7'],
-    bookmarks: ['dora_bang'],
+    like: [],
+    bookmarks: [],
     imageSrc: photo8,
     comment: [
       {

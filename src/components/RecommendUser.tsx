@@ -3,21 +3,27 @@ import getCurrentUser from 'utils/getUserInfo';
 import ProfileIcon from './ProfileIcon';
 import UserList, { UserListProps } from 'constants/UserList';
 
-const Button = ({ value }: { value: string }) => {
+export const Button = ({ value }: { value: string }) => {
   return (
     <div className='cursor-pointer text-sky-500 text-xs font-bold'>{value}</div>
   );
 };
 
-const UserProfile = ({
+export const UserProfile = ({
   user,
+  value,
   type,
 }: {
   user: UserListProps;
+  value: string;
   type?: string;
 }) => {
   return (
-    <div className='flex items-center px-4 py-[10px]'>
+    <div
+      className={`flex items-center ${
+        type === 'SearchUser' ? 'py-2' : 'px-4 py-[10px]'
+      }`}
+    >
       <ProfileIcon
         size={true}
         profile={user?.imageSrc}
@@ -25,13 +31,16 @@ const UserProfile = ({
       />
       <div className='flex-grow pl-2 text-sm'>
         <p className='font-bold'>{user?.nickName}</p>
-        <p className='text-gray-500 text-xs'>
+        <p
+          className={`text-gray-500
+        ${type === 'SearchUser' ? 'text-base' : 'text-xs'}`}
+        >
           {type === 'currentUser'
             ? user?.userName
             : user.description?.substring(0, 20)}
         </p>
       </div>
-      <Button value={type === 'currentUser' ? '전환' : '팔로우'} />
+      <Button value={value} />
     </div>
   );
 };
@@ -53,7 +62,9 @@ const RecommendUser = () => {
 
   return (
     <div className='w-[319px]'>
-      {currentUser && <UserProfile user={currentUser} type='currentUser' />}
+      {currentUser && (
+        <UserProfile user={currentUser} type='currentUser' value='전환' />
+      )}
 
       <ul className='pt-2'>
         <li className='flex px-4 py-2'>
@@ -65,7 +76,7 @@ const RecommendUser = () => {
         {randomUserList &&
           randomUserList.map((user, idx) => (
             <li key={idx}>
-              <UserProfile user={user} />
+              <UserProfile user={user} value='팔로우' />
             </li>
           ))}
       </ul>

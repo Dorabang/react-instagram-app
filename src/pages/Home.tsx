@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <PostCard />
-      <div>
+      <div className='hidden xl:block'>
         <RecommendUser />
       </div>
     </>

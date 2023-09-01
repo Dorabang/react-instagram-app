@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className='w-full ml-0 sm:w-[calc(100%_-_335px)] sm:ml-auto flex justify-center pt-4 pb-20'>
+      <div className='w-full ml-0 sm:w-[calc(100%_-_72px)] xl:w-[calc(100%_-_335px)] sm:ml-auto flex justify-center pt-4 pb-20'>
         <Outlet />
       </div>
     </>
