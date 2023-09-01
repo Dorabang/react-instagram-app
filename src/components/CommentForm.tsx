@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import getCurrentUser from 'utils/getUserInfo';
-import { PostList, PostListProps } from 'constants/PostList';
+import { PostListProps } from 'constants/PostList';
 import { useRecoilState } from 'recoil';
 import { postState } from 'recoil/atoms';
 
