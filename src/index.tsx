@@ -15,6 +15,7 @@ import RegisterPage from 'pages/register';
 import getCurrentUser from 'utils/getUserInfo';
 import ErrorPage from 'pages/error';
 import Home from 'pages/Home';
+import PeoplePage from 'pages/explore/people';
 
 const currentUser = getCurrentUser();
 
@@ -24,7 +25,11 @@ const routesForAuthOnly = [
     element: <App />,
     children: [
       { path: '/', element: <Home /> },
-      { path: 'explore', element: <ExplorePage /> },
+      {
+        path: 'explore',
+        element: <ExplorePage />,
+      },
+      { path: 'explore/people', element: <PeoplePage /> },
       { path: 'reels', element: <ReelsPage /> },
       { path: 'direct/inbox', element: <DirectPage /> },
       { path: `${currentUser?.nickName}`, element: <UserPage /> },
