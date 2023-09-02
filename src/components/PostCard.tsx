@@ -185,7 +185,7 @@ const PostCard = () => {
                     <div className='mr-2'>
                       <ProfileIcon
                         userName={post.nickName}
-                        size={true}
+                        size='sm'
                         profile={postUser?.imageSrc}
                       />
                     </div>
