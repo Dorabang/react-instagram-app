@@ -128,16 +128,10 @@ const PostCard = () => {
 
         post.comment[commentIdx].like = updatedCommentLikes;
       } else {
-        console.log('tlqkf');
         if (currentUser && commentIdx) {
           updatedCommentLikes = commentIdx
             ? post?.comment[commentIdx].like.slice()
             : undefined;
-
-          console.log(
-            '🚀 ~ file: PostCard.tsx:134 ~ PostCard ~ newCommentLike:',
-            updatedCommentLikes
-          );
         }
         currentUser &&
           updatedCommentLikes &&
@@ -191,7 +185,7 @@ const PostCard = () => {
                     <div className='mr-2'>
                       <ProfileIcon
                         userName={post.nickName}
-                        size={true}
+                        size='sm'
                         profile={postUser?.imageSrc}
                       />
                     </div>

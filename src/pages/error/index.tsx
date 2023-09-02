@@ -8,7 +8,7 @@ const ErrorPage = () => {
       </h2>
       <p>
         클릭하신 링크가 잘못되었거나 페이지가 삭제되었습니다.{' '}
-        <Link to='/' className='text-cyan-800'>
+        <Link to='/' className='text-sky-800'>
           Instagram으로 돌아가기.
         </Link>
       </p>

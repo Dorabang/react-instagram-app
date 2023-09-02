@@ -126,7 +126,7 @@ const AuthForm = ({ type }: { type: string }) => {
             {type === 'register' ? (
               <>
                 <span>계정이 있으신가요?</span>{' '}
-                <Link className='text-cyan-500 font-bold cursor-pointer' to='/'>
+                <Link className='text-sky-500 font-bold cursor-pointer' to='/'>
                   로그인
                 </Link>
               </>
@@ -134,7 +134,7 @@ const AuthForm = ({ type }: { type: string }) => {
               <>
                 <span>아직 회원이 아니신가요?</span>{' '}
                 <Link
-                  className='text-cyan-500 font-bold cursor-pointer'
+                  className='text-sky-500 font-bold cursor-pointer'
                   to='/register'
                 >
                   가입하기
