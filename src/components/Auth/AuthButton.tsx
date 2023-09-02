@@ -28,12 +28,12 @@ const AuthButton: React.FC<ButtonProps> = ({
       disabled:opacity-70
       disabled:cursor-not-allowed
       rounded-lg
-      hover:bg-cyan-700
+      hover:bg-sky-700
       transition
       w-full
-      ${outline ? 'bg-white' : 'bg-cyan-500'}
-      ${outline ? 'border-black' : 'border-cyan-500'}
-      ${outline ? 'hover:border-black' : 'hover:border-cyan-700'}
+      ${outline ? 'bg-white' : 'bg-sky-500'}
+      ${outline ? 'border-black' : 'border-sky-500'}
+      ${outline ? 'hover:border-black' : 'hover:border-sky-700'}
       ${outline ? 'text-black' : 'text-white'}
       ${small ? 'text-sm' : 'text-md'}
       ${small ? 'py-1' : 'py-2'}

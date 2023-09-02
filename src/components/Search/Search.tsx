@@ -80,7 +80,7 @@ const Search = () => {
                 }`}
                 onClick={handleAllRemove}
               >
-                <span className='text-cyan-500 hover:text-cyan-800 cursor-pointer'>
+                <span className='text-sky-500 hover:text-sky-800 cursor-pointer'>
                   모두 지우기
                 </span>
               </div>
