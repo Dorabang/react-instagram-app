@@ -20,3 +20,8 @@ export const postState = atom({
   key: 'postState', // unique ID (with respect to other atoms/selectors)
   default: PostList, // default value (aka initial value)
 });
+
+export const postModalState = atom<null | number>({
+  key: 'postModalState', // unique ID (with respect to other atoms/selectors)
+  default: null, // default value (aka initial value)
+});
