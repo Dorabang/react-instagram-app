@@ -8,10 +8,12 @@ export const Button = ({
   value,
   variant = 'text',
   size = 'xs',
+  hover = false,
 }: {
   value: string;
   variant?: string;
   size?: 'xs' | 'sm' | 'base';
+  hover?: boolean;
 }) => {
   return (
     <div
@@ -25,6 +27,7 @@ export const Button = ({
       ${variant === 'contained' ? 'px-5 py-[6px] rounded-md' : ''}
       ${variant === 'contained' ? 'hover:bg-sky-600' : ''}
       ${variant === 'contained' ? 'active:opacity-70' : ''}
+      ${hover ? 'hover:text-sky-700' : ''}
       cursor-pointer
       font-bold`}
     >
@@ -39,12 +42,14 @@ export const UserProfile = ({
   value,
   variant,
   size,
+  hover,
 }: {
   user: UserListProps;
   type?: string;
   value: string;
   variant?: string;
   size?: 'xs' | 'sm' | 'base';
+  hover?: boolean;
 }) => {
   return (
     <div
@@ -68,7 +73,7 @@ export const UserProfile = ({
             : user.description?.substring(0, 20)}
         </p>
       </div>
-      <Button value={value} variant={variant} size={size} />
+      <Button value={value} variant={variant} size={size} hover={hover} />
     </div>
   );
 };
@@ -101,7 +106,7 @@ const RecommendUser = () => {
           </span>
           <Link
             to='/explore/people'
-            className='text-xs font-bold cursor-pointer'
+            className='text-xs font-bold cursor-pointer hover:opacity-70'
           >
             모두 보기
           </Link>
@@ -109,7 +114,7 @@ const RecommendUser = () => {
         {randomUserList &&
           randomUserList.map((user, idx) => (
             <li key={idx}>
-              <UserProfile user={user} value='팔로우' />
+              <UserProfile user={user} value='팔로우' hover={true} />
             </li>
           ))}
       </ul>
