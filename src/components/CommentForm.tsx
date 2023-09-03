@@ -4,13 +4,7 @@ import { PostListProps } from 'constants/PostList';
 import { useRecoilState } from 'recoil';
 import { postState } from 'recoil/atoms';
 
-const CommentForm = ({
-  postId,
-  updatedSetPosts,
-}: {
-  postId: number;
-  updatedSetPosts: (value: PostListProps[]) => void;
-}) => {
+const CommentForm = ({ postId }: { postId: number }) => {
   const currentUser = getCurrentUser();
   const [posts, setPosts] = useRecoilState<PostListProps[]>(postState);
   const [comment, setComment] = useState('');
@@ -28,9 +22,10 @@ const CommentForm = ({
     };
 
     let newComments = post?.comment.slice();
+
     newComments?.push(newComment);
 
-    const updatedPost = post?.comment && {
+    const updatedPost: any = post?.comment && {
       id: post?.id,
       nickName: post?.nickName,
       description: post?.description,
@@ -41,13 +36,12 @@ const CommentForm = ({
       comment: newComments,
     };
 
-    const updatedPosts: any[] = [
-      ...posts.slice(0, postIdx),
+    setPosts((currentPosts) => [
+      ...currentPosts.slice(0, postIdx),
       updatedPost,
-      ...posts.slice(postIdx + 1),
-    ];
+      ...currentPosts.slice(postIdx + 1),
+    ]);
 
-    setPosts(updatedPosts);
     setComment('');
   };
 
